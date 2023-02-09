@@ -4,3 +4,5 @@
 **Seznameni s GitHub**
 - Zalozeni uctu
 - Textovy edit
+blablabla
+dsfsfs
