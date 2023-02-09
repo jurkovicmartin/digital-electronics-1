@@ -5,4 +5,4 @@
 - Zalozeni uctu
 - Textovy edit
 blalsadf. asfasfas.
-asfasfas.
+Asfasfas. 
