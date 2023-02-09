@@ -2,4 +2,5 @@
 
 # Lab 1
 **Seznameni s GitHub**
-Zalozeni uctu a nesledny textovy edit
+-Zalozeni uctu
+-nesledny textovy edit
