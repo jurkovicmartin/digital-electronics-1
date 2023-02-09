@@ -4,5 +4,5 @@
 **Seznameni s GitHub**
 - Zalozeni uctu
 - Textovy edit
-blalsadf.asfasfas.
+blalsadf. asfasfas.
 asfasfas.
