@@ -2,5 +2,5 @@
 
 # Lab 1
 **Seznameni s GitHub**
--Zalozeni uctu
--nesledny textovy edit
+- Zalozeni uctu
+- Textovy edit
