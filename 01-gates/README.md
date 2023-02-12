@@ -1,4 +1,4 @@
-# Lab 1: Martin Jurkovic
+# Lab 1: Martin Jurkovič
 
 ### De Morgan's laws
 
