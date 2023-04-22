@@ -61,45 +61,30 @@ architecture Behavioral of timer is
   
   -- Local delay counter
   signal sig_cnt : unsigned(4 downto 0);
-  
+  -- Local rounds counter
   signal sig_round_cnt : unsigned(4 downto 0);
-  
-  -- Specific values for local counter
-  --constant c_DELAY_4SEC : unsigned(4 downto 0) := b"1_0000"; --! 4-second delay
-  --constant c_DELAY_2SEC : unsigned(4 downto 0) := b"0_1000"; --! 2-second delay
   
 begin
 
 clk_en0 : entity work.clock_enable
     generic map (
-      -- FOR SIMULATION, KEEP THIS VALUE TO 1
-      -- FOR IMPLEMENTATION, CALCULATE VALUE: 250 ms / (1/100 MHz)
-      -- 1   @ 10 ns
-      -- ??? @ 250 ms
-      g_MAX => 1000000000
+      g_MAX => 1000000000 -- 10 seconds
     )
     port map (
       clk => clck,
       rst => rst,
       ce  => sig_en
     );
---------------------------------------------------------
--- p_traffic_fsm: 
--- A sequential process with synchronous reset and
--- clock_enable entirely controls the sig_state signal
--- by CASE statement.
---------------------------------------------------------
+
+    
 p_timer_fsm : process (clck) is
 begin
 if (rising_edge(clck)) then
       if (rst = '1') then               -- Synchronous reset
         sig_state <= GO;                -- Init state
-        sig_cnt   <= (others => '0');
-        sig_round_cnt <= (others => '0');   -- Clear delay counter
+        sig_cnt   <= (others => '0');       --Clear dealy counter
+        sig_round_cnt <= (others => '0');   -- Clear rounds counter
       elsif (sig_en = '1') then
-        -- Every 250 ms, CASE checks the value of sig_state
-        -- local signal and changes to the next state 
-        -- according to the delay value.
         case sig_state is
         
          when GO =>
@@ -109,21 +94,16 @@ if (rising_edge(clck)) then
             if (sig_cnt < UNSIGNED(goDelay)) then
               sig_cnt <= sig_cnt + 1;
             else
-              -- Move to the next state
               sig_state <= PAUSE;
-              -- Reset delay counter value
               sig_cnt   <= (others => '0');
             end if;
           end if;           
             
           when PAUSE =>
-            -- Count to 2 secs
             if (sig_cnt < UNSIGNED(pauseDelay)) then
               sig_cnt <= sig_cnt + 1;
             else
-              -- Move to the next state
               sig_state <= GO;
-              -- Reset delay counter value
               sig_cnt   <= (others => '0');
               sig_round_cnt <= sig_round_cnt + 1;
             end if;
@@ -132,9 +112,7 @@ if (rising_edge(clck)) then
                 if (sig_cnt < b"0000") then
               sig_cnt <= sig_cnt + 1;
             else
-              -- Move to the next state
               sig_state <= GO;
-              -- Reset delay counter value
               sig_cnt   <= (others => '0');
               sig_round_cnt <= (others => '0');
             end if;
