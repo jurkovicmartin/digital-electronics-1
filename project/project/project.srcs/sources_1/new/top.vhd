@@ -71,11 +71,6 @@ begin
             seg(0) => CG,    
             dig(3 downto 0) => AN(3 downto 0)
       );
-    --AN(7 downto 4) <= "1111";
     AN(7 downto 4) <= b"1111";
-  --------------------------------------------------------
-  -- Other settings
-  --------------------------------------------------------
-  -- Connect one common anode to 3.3V
 
 end architecture behavioral;
