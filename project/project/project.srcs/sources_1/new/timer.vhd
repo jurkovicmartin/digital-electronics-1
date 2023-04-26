@@ -310,15 +310,15 @@ p_output_fsm : process (sig_state) is
         
       when PAUSE =>
            indicator <= "1111"; --P
-           firstDigit <= "0000";
-           secondDigit <= "0000";
-           thirdDigit <= "0000";
-           
-      when OVER =>
-           indicator <= "1110"; -- E
            firstDigit <= sig_p_first;
            secondDigit <= sig_p_second;
            thirdDigit <= sig_p_third;
+           
+      when OVER =>
+           indicator <= "1110"; -- E
+           firstDigit <= "0000";
+           secondDigit <= "0000";
+           thirdDigit <= "0000";
            
       when others =>
            indicator <= "1110"; -- E
