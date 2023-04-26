@@ -1,36 +1,7 @@
-----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
--- 
--- Create Date: 04/06/2023 01:44:12 PM
--- Design Name: 
--- Module Name: timer - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
--- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
--- Additional Comments:
--- 
-----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity timer is
     Port ( clck : in STD_LOGIC;
@@ -58,11 +29,26 @@ architecture Behavioral of timer is
   
   -- Internal clock enable
   signal sig_en : std_logic;
+  signal sig_en1 : std_logic;
   
-  -- Local delay counter
+  -- delay counter
   signal sig_cnt : unsigned(4 downto 0);
-  -- Local rounds counter
+  -- rounds counter
   signal sig_round_cnt : unsigned(4 downto 0);
+  
+  -- set up signals
+  signal sig_g_start2 : std_logic_vector(3 downto 0); -- GO 2nd digit
+  signal sig_g_start3 : std_logic_vector(3 downto 0); -- Go 3rd digit
+  signal sig_p_start2 : std_logic_vector(3 downto 0); -- PAUSE 2nd dig
+  signal sig_p_start3 : std_logic_vector(3 downto 0); -- PAUSE 3rd digit
+  
+  -- siganl to display
+  signal sig_g_first : std_logic_vector(3 downto 0);
+  signal sig_g_second : std_logic_vector(3 downto 0);
+  signal sig_g_third : std_logic_vector(3 downto 0);
+  signal sig_p_first : std_logic_vector(3 downto 0);
+  signal sig_p_second : std_logic_vector(3 downto 0);
+  signal sig_p_third : std_logic_vector(3 downto 0);
   
 begin
 
@@ -74,6 +60,16 @@ clk_en0 : entity work.clock_enable
       clk => clck,
       rst => rst,
       ce  => sig_en
+    );
+    
+clk_en1 : entity work.clock_enable
+    generic map (
+      g_MAX => 100000000 -- 1 seconds
+    )
+    port map (
+      clk => clck,
+      rst => rst,
+      ce  => sig_en1
     );
 
     
@@ -125,6 +121,181 @@ if (rising_edge(clck)) then
       end if;
       
 end process p_timer_fsm;
+
+p_setup_fsm : process (rst) is
+  begin
+  
+  case goDelay is
+  	
+    when "0000" => -- 10 seconds
+    	sig_g_start2 <= "0001";
+        sig_g_start3 <= "0000";
+   
+    when "0001" => -- 20 seconds
+    	sig_g_start2 <= "0010";
+        sig_g_start3 <= "0000";
+        
+    when "0010" => -- 30 seconds
+    	sig_g_start2 <= "0011";
+        sig_g_start3 <= "0000";
+        
+    when "0011" =>
+    	sig_g_start2 <= "0100";
+        sig_g_start3 <= "0000";
+  	
+    when "0100" =>
+    	sig_g_start2 <= "0101";
+        sig_g_start3 <= "0000";
+        
+    when "0101" =>
+    	sig_g_start2 <= "0110";
+        sig_g_start3 <= "0000";
+        
+    when "0110" =>
+    	sig_g_start2 <= "0111";
+        sig_g_start3 <= "0000";
+        
+    when "0111" =>
+    	sig_g_start2 <= "1000";
+        sig_g_start3 <= "0000";
+        
+    when "1000" =>
+    	sig_g_start2 <= "1001";
+        sig_g_start3 <= "0000";
+        
+    when "1001" =>
+    	sig_g_start2 <= "0000";
+        sig_g_start3 <= "0001";
+        
+    when "1010" =>
+    	sig_g_start2 <= "0001";
+        sig_g_start3 <= "0001";
+        
+    when "1011" =>
+    	sig_g_start2 <= "0010";
+        sig_g_start3 <= "0001";
+        
+    when "1100" =>
+    	sig_g_start2 <= "0011";
+        sig_g_start3 <= "0001";
+        
+    when "1101" =>
+    	sig_g_start2 <= "0100";
+        sig_g_start3 <= "0001";
+        
+    when "1110" =>
+    	sig_g_start2 <= "0101";
+        sig_g_start3 <= "0001";
+        
+    when "1111" =>
+    	sig_g_start2 <= "0110";
+        sig_g_start3 <= "0001";
+        
+    when others =>
+    	sig_g_start2 <= "0000";
+        sig_g_start3 <= "0000";
+        
+  end case;
+  
+  case pauseDelay
+  
+  when "0000" => -- 10 seconds
+    	sig_p_start2 <= "0001";
+        sig_p_start3 <= "0000";
+   
+    when "0001" => -- 20 seconds
+    	sig_p_start2 <= "0010";
+        sig_p_start3 <= "0000";
+        
+    when "0010" => -- 30 seconds
+    	sig_p_start2 <= "0011";
+        sig_p_start3 <= "0000";
+        
+    when "0011" =>
+    	sig_p_start2 <= "0100";
+        sig_p_start3 <= "0000";
+  	
+    when "0100" =>
+    	sig_p_start2 <= "0101";
+        sig_p_start3 <= "0000";
+        
+    when "0101" =>
+    	sig_p_start2 <= "0110";
+        sig_p_start3 <= "0000";
+        
+    when "0110" =>
+    	sig_p_start2 <= "0111";
+        sig_p_start3 <= "0000";
+        
+    when "0111" =>
+    	sig_p_start2 <= "1000";
+        sig_p_start3 <= "0000";
+        
+    when "1000" =>
+    	sig_p_start2 <= "1001";
+        sig_p_start3 <= "0000";
+        
+    when "1001" =>
+    	sig_p_start2 <= "0000";
+        sig_p_start3 <= "0001";
+        
+    when "1010" =>
+    	sig_p_start2 <= "0001";
+        sig_p_start3 <= "0001";
+        
+    when "1011" =>
+    	sig_p_start2 <= "0010";
+        sig_p_start3 <= "0001";
+        
+    when "1100" =>
+    	sig_p_start2 <= "0011";
+        sig_p_start3 <= "0001";
+        
+    when "1101" =>
+    	sig_p_start2 <= "0100";
+        sig_p_start3 <= "0001";
+        
+    when "1110" =>
+    	sig_p_start2 <= "0101";
+        sig_p_start3 <= "0001";
+        
+    when "1111" =>
+    	sig_p_start2 <= "0110";
+        sig_p_start3 <= "0001";
+        
+    when others =>
+    	sig_p_start2 <= "0000";
+        sig_p_start3 <= "0000";
+  
+  end case;
+  
+end process p_setup_fsm;
+
+
+countdownGo : entity work.countdown
+    port map (
+      clk => clck,
+      rst => rst,
+      en => sig_en1,
+      start10 => sig_g_start1,
+      start100 => sig_g_start2,
+      seconds => sig_g_first,
+      tens => sig_g_second,
+      hunderets => sig_g_third
+    );
+    
+countdownPause : entity work.countdown
+    port map (
+      clk => clck,
+      rst => rst,
+      en => sig_en1,
+      start10 => sig_p_start1,
+      start100 => sig_p_start2,
+      seconds => sig_p_first,
+      tens => sig_p_second,
+      hunderets => sig_p_third
+    );
+
  
 p_output_fsm : process (sig_state) is
   begin
@@ -133,9 +304,9 @@ p_output_fsm : process (sig_state) is
     
       when GO =>
            indicator <= "1100"; --g
-           firstDigit <= "0001";
-           secondDigit <= "0001";
-           thirdDigit <= "0001";
+           firstDigit <= sig_g_first;
+           secondDigit <= sig_g_second;
+           thirdDigit <= sig_g_third;
         
       when PAUSE =>
            indicator <= "1111"; --P
@@ -145,9 +316,9 @@ p_output_fsm : process (sig_state) is
            
       when OVER =>
            indicator <= "1110"; -- E
-           firstDigit <= "0000";
-           secondDigit <= "0000";
-           thirdDigit <= "0000";
+           firstDigit <= sig_p_first;
+           secondDigit <= sig_p_second;
+           thirdDigit <= sig_p_third;
            
       when others =>
            indicator <= "1110"; -- E
