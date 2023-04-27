@@ -74,7 +74,7 @@ clk_en1 : entity work.clock_enable
       ce  => sig_en1
     );
 
-countdownGo : entity work.countdown --for displaying GO countdown
+countdownGo : entity work.countdown  --for displaying GO countdown
     port map (
       clk => clck,
       rst => sig_g_reset,
@@ -86,7 +86,7 @@ countdownGo : entity work.countdown --for displaying GO countdown
       hunderets => sig_g_third
     );
     
-countdownPause : entity work.countdown --for displaying PAUSE countdown
+countdownPause : entity work.countdown  --for displaying PAUSE countdown
     port map (
       clk => clck,
       rst => sig_p_reset,
