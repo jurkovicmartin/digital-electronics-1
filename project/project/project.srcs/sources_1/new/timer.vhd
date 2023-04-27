@@ -39,7 +39,7 @@ architecture Behavioral of timer is
   -- set up signals
   signal sig_g_start2 : std_logic_vector(3 downto 0); -- GO 2nd digit
   signal sig_g_start3 : std_logic_vector(3 downto 0); -- Go 3rd digit
-  signal sig_p_start2 : std_logic_vector(3 downto 0); -- PAUSE 2nd dig
+  signal sig_p_start2 : std_logic_vector(3 downto 0); -- PAUSE 2nd digit
   signal sig_p_start3 : std_logic_vector(3 downto 0); -- PAUSE 3rd digit
   
   -- siganl to display
@@ -49,6 +49,9 @@ architecture Behavioral of timer is
   signal sig_p_first : std_logic_vector(3 downto 0);
   signal sig_p_second : std_logic_vector(3 downto 0);
   signal sig_p_third : std_logic_vector(3 downto 0);
+  
+  signal sig_g_reset : std_logic;
+  signal sig_p_reset : std_logic;
   
 begin
 
@@ -105,13 +108,17 @@ if (rising_edge(clck)) then
             end if;
             
             when OVER =>
-                if (sig_cnt < b"0000") then
-              sig_cnt <= sig_cnt + 1;
-            else
-              sig_state <= GO;
-              sig_cnt   <= (others => '0');
-              sig_round_cnt <= (others => '0');
-            end if;
+         --       if (sig_cnt < b"0000") then
+         --     sig_cnt <= sig_cnt + 1;
+         --   else
+         --     sig_state <= GO;
+         --     sig_cnt   <= (others => '0');
+         --     sig_round_cnt <= (others => '0');
+         --  end if;
+                if(rst = '1') then
+                    sig_state <= GO;
+                    sig_cnt   <= (others => '0');
+                end if;
             
             when others =>
                 sig_state <= OVER;
@@ -124,6 +131,9 @@ end process p_timer_fsm;
 
 p_setup_fsm : process (rst) is
   begin
+  
+  sig_g_reset <= '1';
+  sig_p_reset <= '1';
   
   case goDelay is
   	
@@ -197,7 +207,7 @@ p_setup_fsm : process (rst) is
         
   end case;
   
-  case pauseDelay
+  case pauseDelay is
   
   when "0000" => -- 10 seconds
     	sig_p_start2 <= "0001";
@@ -272,13 +282,29 @@ p_setup_fsm : process (rst) is
 end process p_setup_fsm;
 
 
+p_reset_fsm : process (sig_state) is
+begin
+
+case sig_state is
+ when GO =>
+           sig_g_reset <= '0';
+           sig_p_reset <= '1';
+           
+ when PAUSE =>
+           sig_g_reset <= '1';
+           sig_p_reset <= '0';
+           
+ end case;
+
+end process p_reset_fsm;
+
 countdownGo : entity work.countdown
     port map (
       clk => clck,
-      rst => rst,
+      rst => sig_g_reset,
       en => sig_en1,
-      start10 => sig_g_start1,
-      start100 => sig_g_start2,
+      start10 => sig_g_start2,
+      start100 => sig_g_start3,
       seconds => sig_g_first,
       tens => sig_g_second,
       hunderets => sig_g_third
@@ -287,10 +313,10 @@ countdownGo : entity work.countdown
 countdownPause : entity work.countdown
     port map (
       clk => clck,
-      rst => rst,
+      rst => sig_p_reset,
       en => sig_en1,
-      start10 => sig_p_start1,
-      start100 => sig_p_start2,
+      start10 => sig_p_start2,
+      start100 => sig_p_start3,
       seconds => sig_p_first,
       tens => sig_p_second,
       hunderets => sig_p_third

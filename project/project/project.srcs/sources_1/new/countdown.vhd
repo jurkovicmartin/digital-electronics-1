@@ -5,7 +5,7 @@ use ieee.numeric_std.all;
 entity countdown is
   port (
     clk    : in    std_logic; --! Main clock
-    rst    : in    std_logic; --! Synchronous reset
+    rst    : in    std_logic;
     en     : in    std_logic; --! Enable input
     start10  : in	   std_logic_vector(3 downto 0);
     start100 : in	   std_logic_vector(3 downto 0);
@@ -33,17 +33,18 @@ begin
         cnt100 <= unsigned(start100);
       elsif (en = '1') then         -- Test if counter is enabled
       
-        if(cnt1 = "0000") then
+      
+        if(cnt10 = "0000" and cnt1 = "0000") then
+            cnt1 <= "1001";
+        	cnt10 <= "1001";
+            cnt100 <= cnt100 - 1;
+        elsif (cnt1 = "0000") then
         	cnt1 <= "1001";
             cnt10 <= cnt10 - 1;
         else
-        	cnt1 <= cnt1 - 1;
+            cnt1 <= cnt1 - 1;
         end if;
-        
-        if(cnt10 = "0000" and cnt1 = "0000") then
-        	cnt10 <= "1001";
-            cnt100 <= cnt100 - 1;
-        end if;
+ 
         
       end if;
     end if;
