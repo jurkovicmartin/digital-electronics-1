@@ -1,14 +1,6 @@
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
---use IEEE.NUMERIC_STD.ALL;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 entity top is
     Port ( CLK100MHZ : in STD_LOGIC;
@@ -25,16 +17,13 @@ entity top is
            SW        : in STD_LOGIC_VECTOR (11 downto 0));
 end top;
 
-----------------------------------------------------------
--- Architecture body for top level
-----------------------------------------------------------
-
 architecture behavioral of top is
 
-    signal sig_indicator : std_logic_vector(3 downto 0);
-    signal sig_first : std_logic_vector(3 downto 0);
-    signal sig_second : std_logic_vector(3 downto 0);
-    signal sig_third : std_logic_vector(3 downto 0);
+    --data for 7seg driver
+    signal sig_indicator : std_logic_vector(3 downto 0); 
+    signal sig_first : std_logic_vector(3 downto 0);	 
+    signal sig_second : std_logic_vector(3 downto 0);	 
+    signal sig_third : std_logic_vector(3 downto 0);	 
     
 
 begin
