@@ -11,7 +11,7 @@ Zadání znělo vytvořit časovač na kruhový trénink s možností nastavit p
 
 ## Hardware description of demo application
 
-Pro ovládání je využito 12 switchů a 1 button, výstup je zobrazen na sedmi-segmentovém displeji. První 4 switche (tj. 0 - 3) slouží pro nastavení doby kola, následující 4 switche jsou k nastavení doby pauzy a další 4 k nastavení počtu kol. Jeden prostřední button plní funkci resetu. Z možných 8 pozic na displeji jsou využívány čtyři. Levý z těchto čtyř slouží na identifikace (tj. jestli je aktuálně kolo, pauza nebo konec), zbylé 3 slouží pro samotný časový odpočet.
+Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen na sedmi-segmentovém displeji. První 4 přepínače (tj. 0 - 3) slouží pro nastavení doby kola, následující 4 přepínače jsou k nastavení doby pauzy a další 4 k nastavení počtu kol. Jedno prostřední tlačítko plní funkci resetu. Z možných 8 pozic na displeji jsou využívány čtyři. Levý z těchto čtyř slouží na identifikace (tj. jestli je aktuálně kolo, pauza nebo konec), zbylé 3 slouží pro samotný časový odpočet.
 
 * scheme
 
@@ -25,7 +25,11 @@ Write descriptive text and simulation screenshots of your components.
 
 ## Instructions
 
-Write an instruction manual for your application, including photos or a link to a video.
+Po spuštění bude aplikace v jistém prvotním nastevní (tj. 1 10-sekundové kolo), ve kterém můžeme aplikaci nastavit podle našich preferencí.
+* Přepínače 0 - 3 slouží k nastavení doby kola, jejich nastavením (hodnota je bráná binárně) přičteme k základním 10 sekundám dalších 10 sekund za každý bit.
+* Přepínače 4 - 7 slouží k nastavení doby pauzy, jejich nastavením (hodnota je bráná binárně) přičteme k základním 10 sekundám dalších 10 sekund za každý bit.
+* Přepínače 8 - 11 sloužík k nastavení počtu kol, jejich nastavením (hodnota je bráná binárně) přičteme k základu 1 kola další 1 kolo za každý bit.
+Nyní stiskneme tlačítko reset, které nalezneme uprostřed všech tlačítek. Na displeji se poté zobrazí '9' na levé pozici, symbolizující 'g' jako go a započne odpočet 1. kola. Jakmile odpočet skončí zobrazí se na levé pozici 'P' jako "Pause" a odpočet pauzy. Tyto dva stavy se budou stále opakovat, až do posledního kola, kdy se na displeji zobrazí "E000", což nám signalizuje konec ('E' jako "End"). V tomto stavu aplikace zůstane, dokud nedojde ke stisku tlačítka reset, kdy se celý popsaný proces bude opakovat.
 
 ## References
 
