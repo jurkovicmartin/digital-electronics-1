@@ -13,11 +13,15 @@ Zadání znělo vytvořit časovač na kruhový trénink s možností nastavit p
 
 Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen na sedmi-segmentovém displeji. První 4 přepínače (tj. 0 - 3) slouží pro nastavení doby kola, následující 4 přepínače jsou k nastavení doby pauzy a další 4 k nastavení počtu kol. Jedno prostřední tlačítko plní funkci resetu. Z možných 8 pozic na displeji jsou využívány čtyři. Levý z těchto čtyř slouží na identifikace (tj. jestli je aktuálně kolo, pauza nebo konec), zbylé 3 slouží pro samotný časový odpočet.
 
-* scheme
-
 ## Software popis
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
+
+![Algoritmus](img/algorithm.png)
+
+[Zdrojové soubory](/project/project.srcs/sources_1/new/)
+
+[Simulační soubory](/project/project.srcs/sim_1/new/)
 
 ### Simulace komponentů a popis
 
@@ -52,8 +56,3 @@ Nyní stiskneme tlačítko reset, které nalezneme uprostřed všech tlačítek.
 
 ### Indikace konce
 ![Konec](img/stateEnd.jpg)
-
-## References
-
-1. Put here the literature references you used.
-2. ...
