@@ -290,11 +290,13 @@ if (rising_edge(clck)) then
                 if(rst = '1') then
                     sig_state <= GO;
                     sig_cnt   <= (others => '0');
+	            sig_round_cnt <= (others => '0');
                 end if;
             
             when others =>
                 sig_state <= OVER;
                 sig_cnt   <= (others => '0');
+                sig_round_cnt <= (others => '0');
           end case;
         end if;
       end if;
