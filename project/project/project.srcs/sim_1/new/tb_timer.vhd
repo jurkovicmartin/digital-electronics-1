@@ -44,7 +44,7 @@ begin
   p_clk_gen : process is      --clock signal generation
   begin
 
-    while now < 2000 ns loop
+    while now < 3000 ns loop
     
       sig_clk_100mhz <= '0';
       wait for c_CLK_100MHZ_PERIOD / 2;
@@ -66,7 +66,12 @@ begin
     wait for 70 ns;
 
     sig_rst <= '0';
-
+    wait for 1000 ns;
+    
+    sig_rst <= '1';
+    wait for 50 ns;
+    
+    sig_rst <= '0';
     wait;
 
   end process p_reset_gen;
