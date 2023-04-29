@@ -19,9 +19,21 @@ Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
 
-### Simulace componentů
+### Simulace komponentů
 
-Write descriptive text and simulation screenshots of your components.
+* top - propojení programu s deskou
+* timer - hlavní komponent, řídí celý chod aplikace
+* countdown - generuje signál k zobrazení odpočtu
+* clock_enable - zpomaluje řídící hodinový signál
+* driver_7seg_4digits - převod hodnot k zobrazení na 7-segmentovém displeji
+* hex_7seg - definování kombinací zobrazovaných na displeji
+* cnt_up_down - čítač použitý v driver_7seg_4digits
+
+### Simulace "coundown"
+![Countdown simulace](img/sim_countdown.png)
+
+### Simulace "timer"
+![Timer simulace](img/sim_timer.png)
 
 ## Návod k ovládání
 
