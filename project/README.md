@@ -19,9 +19,9 @@ Put flowchats/state diagrams of your algorithm(s) and direct links to source/tes
 
 ![Algoritmus](img/algorithm.png)
 
-[Zdrojové soubory](/project/project.srcs/sources_1/new/)
+[Zdrojové soubory](/project/project.srcs/sources_1/new)
 
-[Simulační soubory](/project/project.srcs/sim_1/new/)
+[Simulační soubory](/project/project.srcs/sim_1/new)
 
 ### Simulace komponentů a popis
 
