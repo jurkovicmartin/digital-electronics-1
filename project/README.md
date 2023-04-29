@@ -32,14 +32,15 @@ Po spuštění bude aplikace v jistém prvotním nastevní (tj. 1 10-sekundové 
 
 Nyní stiskneme tlačítko reset, které nalezneme uprostřed všech tlačítek. Na displeji se poté zobrazí '9' na levé pozici, symbolizující 'g' jako go a započne odpočet 1. kola. Jakmile odpočet skončí zobrazí se na levé pozici 'P' jako "Pause" a odpočet pauzy. Tyto dva stavy se budou stále opakovat, až do posledního kola, kdy se na displeji zobrazí "E000", což nám signalizuje konec ('E' jako "End"). V tomto stavu aplikace zůstane, dokud nedojde ke stisku tlačítka reset, kdy se celý popsaný proces bude opakovat.
 
-Indikace kola
+# Indikace kola
 ![Kolo](img/stateGo.jpg)
 
-Indikace pauzy
+# Indikace pauzy
 ![Pauza](img/statePause.jpg)
 
-Indikace konce
+# Indikace konce
 ![Konec](img/stateEnd.jpg)
+
 ## References
 
 1. Put here the literature references you used.
