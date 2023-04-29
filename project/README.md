@@ -19,7 +19,7 @@ Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen
 
 Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
 
-### Simulace komponentů
+### Simulace komponentů a popis
 
 * top - propojení programu s deskou
 * timer - hlavní komponent, řídí celý chod aplikace
