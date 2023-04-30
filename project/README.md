@@ -15,7 +15,7 @@ Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen
 
 ## Software popis
 
-Softwarové fungování zobrazuje následující algoritmus. 
+Program popisuje následující algoritmus. 
 
 ![Algoritmus](img/algorithm.png)
 
