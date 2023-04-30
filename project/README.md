@@ -7,7 +7,7 @@
 
 ## Teoretický popis
 
-Zadání znělo vytvořit časovač na kruhový trénink s možností nastavit počet kol, dobu kola a pauzy mezi nimi. To znamená, že budeme mít zobrazený odpočet kola, následně odpočet pauzy a takhle stále dokola, dokud neproběhne požadovaný počet kol. Naše řešení je principialně takové, že v prvotním stavu (tj. není na desce nic nastaveno) je doba kola 10 sekund, pauzy též 10 sekund a jedno kolo. Nastavení doby kola, pauzy i počtu kol je skrz 4-bitové vstupní hodnoty, kde každý bit pro nastavení jak již kola, tak pauzy reprezentuje + 10 sekund. Pro počet to platí obdobně (tj. 1 bit = + 1 kolo). Maxilmáně tedy můžeme dosáhnout na 4-minuté kolo, 4-minutovou pauzu a 16 kol. Samotný odpočet se zobrazuje v sekundách.
+Zadání znělo vytvořit časovač na kruhový trénink s možností nastavit počet kol, dobu kola a pauzy mezi nimi. To znamená, že budeme mít zobrazený odpočet kola, následně odpočet pauzy a takhle stále dokola, dokud neproběhne požadovaný počet kol. Naše řešení je principialně takové, že v prvotním stavu (tj. není na desce nic nastaveno) je doba kola 10 sekund, pauzy též 10 sekund a jedno kolo. Nastavení doby kola, pauzy i počtu kol je skrz 4-bitové vstupní hodnoty, kde každý bit pro nastavení jak kola, tak pauzy reprezentuje + 10 sekund. Pro počet to platí obdobně (tj. 1 bit = + 1 kolo). Maxilmáně tedy můžeme dosáhnout na 4-minuté kolo, 4-minutovou pauzu a 16 kol. Samotný odpočet se zobrazuje v sekundách.
 
 ## Hardware popis
 
