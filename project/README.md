@@ -15,7 +15,7 @@ Pro ovládání je využito 12 přepínačů a 1 tlačítko, výstup je zobrazen
 
 ## Software popis
 
-Put flowchats/state diagrams of your algorithm(s) and direct links to source/testbench files in `src` and `sim` folders. 
+Softwarové fungování zobrazuje následující algoritmus. 
 
 ![Algoritmus](img/algorithm.png)
 
