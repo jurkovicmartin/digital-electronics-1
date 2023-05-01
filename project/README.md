@@ -2,7 +2,7 @@
 
 ### Členové týmu
 
-* Buberník Frederic
+* Buberník Frederic Michael
 * Jurkovič Martin
 
 ## Teoretický popis
